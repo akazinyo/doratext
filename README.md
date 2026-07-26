@@ -1,3 +1,5 @@
+UPDATES
+
 v 0.7a 
 *minimap eklendi 
 *tuval üzerinde gezme
