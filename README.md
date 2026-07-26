@@ -1,8 +1,8 @@
 UPDATES
 
-v 0.7a 
-*minimap eklendi 
-*tuval üzerinde gezme
+v 0.7a <br> 
+*minimap eklendi <br> 
+*tuval üzerinde gezme 
 
 ------------------------------------------------------------------------------------------------------------------------
 v 0.7
