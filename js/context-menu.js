@@ -226,11 +226,11 @@
           if (!contextTarget?.content || !contextTarget?.block) return;
           const selectedText = savedSelectionRange ? savedSelectionRange.toString().trim() : '';
           const defaultTitle = selectedText || contextTarget.block.content?.replace(/<[^>]*>/g, '').slice(0, 30) || '';
-          const pageTitle = prompt('Bağlanacak sayfa:', defaultTitle);
+          const pageTitle = prompt(t('confirm.linkPage'), defaultTitle);
           if (!pageTitle) return;
           const page = findPageByTitle(pageTitle);
           if (!page) {
-            alert(`"${pageTitle}" adında bir sayfa bulunamadı.`);
+            alert(t('alert.pageNotFound', pageTitle));
             return;
           }
           const displayText = selectedText || pageTitle;

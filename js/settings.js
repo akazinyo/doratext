@@ -4,6 +4,7 @@ const SETTINGS_KEY = 'doranote_settings';
 
 const DEFAULT_SETTINGS = {
   // General
+  language: 'en',              // 'en' | 'tr'
   autoSave: true,
   defaultView: 'canvas',       // 'canvas' | 'editor'
   gridVisible: true,
@@ -80,6 +81,10 @@ function applySettings() {
 
   // Compact mode
   document.documentElement.classList.toggle('compact-mode', getSetting('compactMode'));
+
+  // Language
+  const lang = getSetting('language') || 'en';
+  if (typeof setLanguage === 'function') setLanguage(lang);
 }
 
 loadSettings();

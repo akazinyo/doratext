@@ -50,50 +50,50 @@
     <div class="flex items-center gap-2 sm:gap-3">
       <button id="addTextBtn" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 active:scale-95 transition">
         <i data-lucide="plus" class="w-4 h-4"></i>
-        <span class="hidden sm:inline">Metin</span>
+        <span class="hidden sm:inline" data-i18n="toolbar.text">Text</span>
       </button>
 
       <button id="addImageBtn" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-lg bg-emerald-600 text-white hover:bg-emerald-700 active:scale-95 transition">
         <i data-lucide="image-plus" class="w-4 h-4"></i>
-        <span class="hidden sm:inline">Resim</span>
+        <span class="hidden sm:inline" data-i18n="toolbar.image">Image</span>
       </button>
 
       <div class="h-6 w-px bg-slate-300 dark:bg-slate-600 mx-1 hidden sm:block"></div>
 
-      <button id="drawLineBtn" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-lg bg-slate-200 text-slate-800 hover:bg-slate-300 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700 active:scale-95 transition" title="Bağlantı çizim modunu aç/kapat">
+      <button id="drawLineBtn" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-lg bg-slate-200 text-slate-800 hover:bg-slate-300 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700 active:scale-95 transition" data-i18n="toolbar.tooltipDraw" title="Toggle connection drawing mode">
         <i data-lucide="pen-tool" class="w-4 h-4"></i>
-        <span class="hidden sm:inline">Bağla</span>
+        <span class="hidden sm:inline" data-i18n="toolbar.draw">Draw</span>
       </button>
 
-      <button id="freeDrawBtn" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-lg bg-slate-200 text-slate-800 hover:bg-slate-300 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700 active:scale-95 transition" title="Serbest çizim modunu aç/kapat">
+      <button id="freeDrawBtn" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-lg bg-slate-200 text-slate-800 hover:bg-slate-300 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700 active:scale-95 transition" data-i18n="toolbar.tooltipPencil" title="Toggle freehand drawing mode">
         <i data-lucide="pencil" class="w-4 h-4"></i>
-        <span class="hidden sm:inline">Kalem</span>
+        <span class="hidden sm:inline" data-i18n="toolbar.pencil">Pencil</span>
       </button>
 
-      <button id="eraserBtn" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-lg bg-slate-200 text-slate-800 hover:bg-slate-300 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700 active:scale-95 transition" title="Silgi modunu aç/kapat">
+      <button id="eraserBtn" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-lg bg-slate-200 text-slate-800 hover:bg-slate-300 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700 active:scale-95 transition" data-i18n="toolbar.tooltipEraser" title="Toggle eraser mode">
         <i data-lucide="eraser" class="w-4 h-4"></i>
-        <span class="hidden sm:inline">Silgi</span>
+        <span class="hidden sm:inline" data-i18n="toolbar.eraser">Eraser</span>
       </button>
 
       <select id="lineColor" class="hidden sm:block text-sm rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-2 py-1.5 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-        <option value="#334155">Siyah</option>
-        <option value="#2563eb">Mavi</option>
-        <option value="#dc2626">Kırmızı</option>
-        <option value="#16a34a">Yeşil</option>
+        <option value="#334155" data-i18n="toolbar.colorBlack">Black</option>
+        <option value="#2563eb" data-i18n="toolbar.colorBlue">Blue</option>
+        <option value="#dc2626" data-i18n="toolbar.colorRed">Red</option>
+        <option value="#16a34a" data-i18n="toolbar.colorGreen">Green</option>
       </select>
 
       <select id="lineStyle" class="hidden sm:block text-sm rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-2 py-1.5 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-        <option value="straight">Düz</option>
-        <option value="curved">Eğri</option>
-        <option value="dashed">Kesikli</option>
+        <option value="straight" data-i18n="toolbar.styleStraight">Straight</option>
+        <option value="curved" data-i18n="toolbar.styleCurved">Curved</option>
+        <option value="dashed" data-i18n="toolbar.styleDashed">Dashed</option>
       </select>
 
       <button id="clearBtn" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-lg bg-slate-200 text-slate-800 hover:bg-slate-300 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700 active:scale-95 transition">
         <i data-lucide="trash-2" class="w-4 h-4"></i>
-        <span class="hidden sm:inline">Temizle</span>
+        <span class="hidden sm:inline" data-i18n="toolbar.clear">Clear</span>
       </button>
 
-      <button id="themeToggle" class="ml-1 p-2 rounded-lg bg-slate-200 text-slate-800 hover:bg-slate-300 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700 transition" aria-label="Temayı değiştir">
+      <button id="themeToggle" class="ml-1 p-2 rounded-lg bg-slate-200 text-slate-800 hover:bg-slate-300 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700 transition" data-i18n="toolbar.tooltipTheme" aria-label="Toggle theme">
         <i data-lucide="moon" class="w-5 h-5 hidden"></i>
         <i data-lucide="sun" class="w-5 h-5"></i>
         <i data-lucide="monitor" class="w-5 h-5 hidden"></i>
@@ -113,52 +113,52 @@
   <div id="context-menu" class="hidden bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-100">
     <div id="ctxGlobal" class="p-1.5">
       <button class="context-item text-slate-700 dark:text-slate-200" data-action="addText">
-        <i data-lucide="plus-square" class="w-4 h-4"></i> Metin Bloğu Ekle
+        <i data-lucide="plus-square" class="w-4 h-4"></i> <span data-i18n="ctx.addText">Metin Bloğu Ekle</span>
       </button>
       <button class="context-item text-slate-700 dark:text-slate-200" data-action="addImage">
-        <i data-lucide="image-plus" class="w-4 h-4"></i> Resim Bloğu Ekle
+        <i data-lucide="image-plus" class="w-4 h-4"></i> <span data-i18n="ctx.addImage">Resim Bloğu Ekle</span>
       </button>
       <button class="context-item text-slate-700 dark:text-slate-200" data-action="createCodeCard">
-        <i data-lucide="code" class="w-4 h-4"></i> Kod Bloğu Oluştur
+        <i data-lucide="code" class="w-4 h-4"></i> <span data-i18n="ctx.codeCard">Kod Bloğu Oluştur</span>
       </button>
       <div class="context-separator"></div>
       <button class="context-item text-slate-700 dark:text-slate-200" data-action="clear">
-        <i data-lucide="trash-2" class="w-4 h-4"></i> Çalışma Alanını Temizle
+        <i data-lucide="trash-2" class="w-4 h-4"></i> <span data-i18n="ctx.clear">Çalışma Alanını Temizle</span>
       </button>
     </div>
     <div id="ctxBlock" class="hidden p-1.5">
-      <div class="px-2 py-1 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Liste Biçimi</div>
+      <div class="px-2 py-1 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400" data-i18n="ctx.sectionList">Liste Biçimi</div>
       <button class="context-item text-slate-700 dark:text-slate-200" data-action="bullet">
-        <i data-lucide="list" class="w-4 h-4"></i> Madde İşaretli Liste
+        <i data-lucide="list" class="w-4 h-4"></i> <span data-i18n="ctx.bulletList">Madde İşaretli Liste</span>
       </button>
       <button class="context-item text-slate-700 dark:text-slate-200" data-action="numbered">
-        <i data-lucide="list-ordered" class="w-4 h-4"></i> Numaralı Liste
+        <i data-lucide="list-ordered" class="w-4 h-4"></i> <span data-i18n="ctx.numberedList">Numaralı Liste</span>
       </button>
       <button class="context-item text-slate-700 dark:text-slate-200" data-action="checkbox">
-        <i data-lucide="check-square" class="w-4 h-4"></i> Yapılacak Kutusu
+        <i data-lucide="check-square" class="w-4 h-4"></i> <span data-i18n="ctx.todo">Yapılacak Kutusu</span>
       </button>
       <button class="context-item text-slate-700 dark:text-slate-200" data-action="table">
-        <i data-lucide="table-2" class="w-4 h-4"></i> Tablo Ekle
+        <i data-lucide="table-2" class="w-4 h-4"></i> <span data-i18n="ctx.table">Tablo Ekle</span>
       </button>
       <div class="context-separator"></div>
-      <div class="px-2 py-1 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Stil</div>
+      <div class="px-2 py-1 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400" data-i18n="ctx.sectionStyle">Stil</div>
       <button class="context-item text-slate-700 dark:text-slate-200" data-action="bold">
-        <i data-lucide="bold" class="w-4 h-4"></i> Kalın
+        <i data-lucide="bold" class="w-4 h-4"></i> <span data-i18n="ctx.bold">Kalın</span>
       </button>
       <button class="context-item text-slate-700 dark:text-slate-200" data-action="italic">
-        <i data-lucide="italic" class="w-4 h-4"></i> İtalik
+        <i data-lucide="italic" class="w-4 h-4"></i> <span data-i18n="ctx.italic">İtalik</span>
       </button>
       <button class="context-item text-slate-700 dark:text-slate-200" data-action="underline">
-        <i data-lucide="underline" class="w-4 h-4"></i> Altı Çizili
+        <i data-lucide="underline" class="w-4 h-4"></i> <span data-i18n="ctx.underline">Altı Çizili</span>
       </button>
       <button class="context-item text-slate-700 dark:text-slate-200" data-action="linkProject">
-        <i data-lucide="link" class="w-4 h-4"></i> Projeye Bağla...
+        <i data-lucide="link" class="w-4 h-4"></i> <span data-i18n="ctx.linkProject">Projeye Bağla...</span>
       </button>
       <button class="context-item text-slate-700 dark:text-slate-200" data-action="codeBlock">
-        <i data-lucide="code-2" class="w-4 h-4"></i> Kod Bloğu Ekle
+        <i data-lucide="code-2" class="w-4 h-4"></i> <span data-i18n="ctx.codeBlock">Kod Bloğu Ekle</span>
       </button>
       <div class="context-separator"></div>
-      <div class="px-2 py-1 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Yazı Boyutu</div>
+      <div class="px-2 py-1 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400" data-i18n="ctx.sectionFont">Yazı Boyutu</div>
       <div class="flex gap-1 px-2 py-1">
         <button class="font-size-btn text-slate-700 dark:text-slate-200" data-action="fontSmall">S</button>
         <button class="font-size-btn text-slate-700 dark:text-slate-200" data-action="fontMedium">M</button>
@@ -166,18 +166,18 @@
         <button class="font-size-btn text-slate-700 dark:text-slate-200" data-action="fontXl">XL</button>
       </div>
       <div class="context-separator"></div>
-      <div class="px-2 py-1 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Kart Rengi</div>
+      <div class="px-2 py-1 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400" data-i18n="ctx.sectionColor">Kart Rengi</div>
       <div class="flex gap-2 px-2 py-1">
-        <button class="color-dot bg-white" data-action="colorWhite" title="Beyaz"></button>
-        <button class="color-dot bg-slate-200" data-action="colorSlate" title="Gri"></button>
-        <button class="color-dot bg-blue-100" data-action="colorBlue" title="Mavi"></button>
-        <button class="color-dot bg-red-100" data-action="colorRed" title="Kırmızı"></button>
-        <button class="color-dot bg-green-100" data-action="colorGreen" title="Yeşil"></button>
-        <button class="color-dot bg-yellow-100" data-action="colorYellow" title="Sarı"></button>
+        <button class="color-dot bg-white" data-action="colorWhite" data-i18n="ctx.colorWhite" title="Beyaz"></button>
+        <button class="color-dot bg-slate-200" data-action="colorSlate" data-i18n="ctx.colorSlate" title="Gri"></button>
+        <button class="color-dot bg-blue-100" data-action="colorBlue" data-i18n="ctx.colorBlue" title="Mavi"></button>
+        <button class="color-dot bg-red-100" data-action="colorRed" data-i18n="ctx.colorRed" title="Kırmızı"></button>
+        <button class="color-dot bg-green-100" data-action="colorGreen" data-i18n="ctx.colorGreen" title="Yeşil"></button>
+        <button class="color-dot bg-yellow-100" data-action="colorYellow" data-i18n="ctx.colorYellow" title="Sarı"></button>
       </div>
       <div class="context-separator"></div>
       <button class="context-item text-red-600 dark:text-red-400" data-action="deleteBlock">
-        <i data-lucide="trash-2" class="w-4 h-4"></i> Bloğu Sil
+        <i data-lucide="trash-2" class="w-4 h-4"></i> <span data-i18n="ctx.deleteBlock">Bloğu Sil</span>
       </button>
     </div>
   </div>
@@ -189,7 +189,7 @@
       <div class="p-3 border-b border-slate-200 dark:border-slate-700">
         <button id="newPageBtn" class="w-full inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 active:scale-95 transition">
           <i data-lucide="plus" class="w-4 h-4"></i>
-          <span class="new-page-text">Yeni Sayfa</span>
+          <span class="new-page-text" data-i18n="sidebar.newPage">New Page</span>
         </button>
       </div>
       <div class="p-2 flex-1 overflow-y-auto">
@@ -198,11 +198,11 @@
         </div>
       </div>
       <div class="flex border-t border-slate-200 dark:border-slate-700">
-        <button id="toggleSidebar" class="flex-1 p-2 flex items-center justify-center text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 transition">
+        <button id="toggleSidebar" class="flex-1 p-2 flex items-center justify-center text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 transition" data-i18n="sidebar.tooltipCollapse" title="Toggle sidebar">
           <i data-lucide="panel-left-close" class="w-4 h-4 sidebar-icon-open"></i>
           <i data-lucide="panel-left-open" class="w-4 h-4 sidebar-icon-closed hidden"></i>
         </button>
-        <button id="shortcutsBtn" class="p-2 flex items-center justify-center text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 transition" title="Kısayollar">
+        <button id="shortcutsBtn" class="p-2 flex items-center justify-center text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 transition" data-i18n="sidebar.tooltipShortcuts" title="Shortcuts">
           <i data-lucide="keyboard" class="w-4 h-4"></i>
         </button>
       </div>
@@ -220,8 +220,8 @@
       <svg id="drawing-svg"></svg>
       <div id="emptyState" class="empty-state absolute inset-0 flex flex-col items-center justify-center text-slate-400 dark:text-slate-500">
         <i data-lucide="mouse-pointer-2" class="w-14 h-14 mb-4 opacity-60"></i>
-        <p class="text-lg font-medium">Tuvaliniz boş</p>
-        <p class="text-sm mt-1">Metin bloğu ekleyin, resim bırakın veya başlamak için çift tıklayın.</p>
+        <p class="text-lg font-medium" data-i18n="canvas.emptyTitle">Your canvas is empty</p>
+        <p class="text-sm mt-1" data-i18n="canvas.emptyHint">Add text blocks, drop images, or double-click anywhere to start.</p>
       </div>
     </main>
   </div>
@@ -230,6 +230,7 @@
   <script src="js/state.js"></script>
   <script src="js/settings.js"></script>
   <script src="js/shortcuts.js"></script>
+  <script src="js/i18n.js"></script>
   <script src="js/dom-refs.js"></script>
   <script src="js/persistence.js"></script>
   <script src="js/pages.js"></script>

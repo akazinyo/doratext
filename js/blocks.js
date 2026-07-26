@@ -100,7 +100,7 @@ function createTable(rows = 3, cols = 3) {
     const th = document.createElement('th');
     th.className = 'border border-slate-300 dark:border-slate-700 p-2 outline-none';
     th.contentEditable = 'true';
-    th.textContent = `Başlık ${c + 1}`;
+    th.textContent = t('block.colLabel') + ' ' + (c + 1);
     headerRow.appendChild(th);
   }
   thead.appendChild(headerRow);
@@ -113,7 +113,7 @@ function createTable(rows = 3, cols = 3) {
       const td = document.createElement('td');
       td.className = 'border border-slate-300 dark:border-slate-700 p-2 outline-none';
       td.contentEditable = 'true';
-      td.textContent = 'Veri';
+      td.textContent = t('block.dataCell');
       tr.appendChild(td);
     }
     tbody.appendChild(tr);
@@ -123,13 +123,13 @@ function createTable(rows = 3, cols = 3) {
   const addColBtn = document.createElement('div');
   addColBtn.className = 'table-add-col';
   addColBtn.innerHTML = '<i data-lucide="plus" class="w-3 h-3"></i>';
-  addColBtn.title = 'Sütun ekle';
+  addColBtn.title = t('block.addColumn');
   addColBtn.contentEditable = 'false';
 
   const addRowBtn = document.createElement('div');
   addRowBtn.className = 'table-add-row';
   addRowBtn.innerHTML = '<i data-lucide="plus" class="w-3 h-3"></i>';
-  addRowBtn.title = 'Satır ekle';
+  addRowBtn.title = t('block.addRow');
   addRowBtn.contentEditable = 'false';
 
   scrollWrapper.appendChild(table);
@@ -185,14 +185,14 @@ function addTableColumn(table) {
   const newTh = document.createElement('th');
   newTh.className = 'border border-slate-300 dark:border-slate-700 p-2 outline-none';
   newTh.contentEditable = 'true';
-  newTh.textContent = `Başlık ${colCount + 1}`;
+  newTh.textContent = t('block.colLabel') + ' ' + (colCount + 1);
   theadRow.appendChild(newTh);
 
   tbodyRows.forEach(tr => {
     const newTd = document.createElement('td');
     newTd.className = 'border border-slate-300 dark:border-slate-700 p-2 outline-none';
     newTd.contentEditable = 'true';
-    newTd.textContent = 'Veri';
+    newTd.textContent = t('block.dataCell');
     tr.appendChild(newTd);
   });
 }
@@ -208,7 +208,7 @@ function addTableRow(table) {
     const td = document.createElement('td');
     td.className = 'border border-slate-300 dark:border-slate-700 p-2 outline-none';
     td.contentEditable = 'true';
-    td.textContent = 'Veri';
+    td.textContent = t('block.dataCell');
     tr.appendChild(td);
   }
   tbody.appendChild(tr);
@@ -266,7 +266,7 @@ function createCodeBlock(language = 'javascript', code = '') {
   const copyBtn = document.createElement('button');
   copyBtn.className = 'code-copy-btn flex items-center gap-1 hover:text-white transition-colors';
   copyBtn.type = 'button';
-  copyBtn.innerHTML = '<span>Kopyala</span>';
+  copyBtn.innerHTML = '<span>' + t('block.copy') + '</span>';
 
   leftGroup.appendChild(select);
   header.appendChild(leftGroup);

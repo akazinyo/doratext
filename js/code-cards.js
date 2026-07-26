@@ -99,7 +99,7 @@
           const btn = e.currentTarget;
           const original = btn.innerHTML;
           btn.classList.add('copied');
-          btn.innerHTML = 'Kopyalandı!';
+          btn.innerHTML = t('block.copied');
           setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = original; }, 1500);
         }).catch(err => console.error('Failed to copy code', err));
       });

@@ -5,8 +5,8 @@ const settingsPanelHTML = `
   <div id="settings-overlay" class="settings-overlay hidden"></div>
   <div id="settings-panel" class="settings-panel">
     <div class="settings-header">
-      <h2 class="settings-title">Ayarlar</h2>
-      <button id="closeSettings" class="settings-close-btn" title="Kapat">
+      <h2 class="settings-title" data-i18n="settings.title">${t('settings.title')}</h2>
+      <button id="closeSettings" class="settings-close-btn" data-i18n="settings.btnClose" title="${t('settings.btnClose')}">
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
     </div>
@@ -14,19 +14,19 @@ const settingsPanelHTML = `
     <div class="settings-tabs">
       <button class="settings-tab active" data-tab="general">
         <i data-lucide="settings-2" class="w-4 h-4"></i>
-        <span>Genel</span>
+        <span data-i18n="settings.tabGeneral">${t('settings.tabGeneral')}</span>
       </button>
       <button class="settings-tab" data-tab="tools">
         <i data-lucide="paintbrush" class="w-4 h-4"></i>
-        <span>Araçlar</span>
+        <span data-i18n="settings.tabTools">${t('settings.tabTools')}</span>
       </button>
       <button class="settings-tab" data-tab="shortcuts">
         <i data-lucide="keyboard" class="w-4 h-4"></i>
-        <span>Kısayollar</span>
+        <span data-i18n="settings.tabShortcuts">${t('settings.tabShortcuts')}</span>
       </button>
       <button class="settings-tab" data-tab="theme">
         <i data-lucide="palette" class="w-4 h-4"></i>
-        <span>Tema</span>
+        <span data-i18n="settings.tabTheme">${t('settings.tabTheme')}</span>
       </button>
     </div>
 
@@ -35,53 +35,61 @@ const settingsPanelHTML = `
       <!-- ══════════ TAB: GENERAL ══════════ -->
       <div class="settings-tab-content active" data-tab-content="general">
         <div class="settings-section">
-          <h3 class="settings-section-title">Çalışma Alanı</h3>
+          <h3 class="settings-section-title" data-i18n="settings.sectionWorkspace">${t('settings.sectionWorkspace')}</h3>
 
           <label class="settings-field">
-            <span class="settings-label">Varsayılan Görünüm</span>
+            <span class="settings-label" data-i18n="settings.labelDefaultView">${t('settings.labelDefaultView')}</span>
             <select id="set-defaultView" class="settings-select">
-              <option value="canvas">Tuval</option>
-              <option value="editor">Editör</option>
+              <option value="canvas" data-i18n="settings.optionCanvas">${t('settings.optionCanvas')}</option>
+              <option value="editor" data-i18n="settings.optionEditor">${t('settings.optionEditor')}</option>
             </select>
           </label>
 
           <label class="settings-field settings-toggle-field">
-            <span class="settings-label">Izgara Göster</span>
+            <span class="settings-label" data-i18n="settings.labelGrid">${t('settings.labelGrid')}</span>
             <button id="set-gridVisible" class="settings-toggle" role="switch" aria-checked="true">
               <span class="settings-toggle-thumb"></span>
             </button>
           </label>
 
           <label class="settings-field settings-toggle-field">
-            <span class="settings-label">Otomatik Kaydet</span>
+            <span class="settings-label" data-i18n="settings.labelAutoSave">${t('settings.labelAutoSave')}</span>
             <button id="set-autoSave" class="settings-toggle" role="switch" aria-checked="true">
               <span class="settings-toggle-thumb"></span>
             </button>
           </label>
+
+          <label class="settings-field">
+            <span class="settings-label" data-i18n="settings.labelLanguage">${t('settings.labelLanguage')}</span>
+            <select id="set-language" class="settings-select">
+              <option value="en" data-i18n="settings.optionEn">${t('settings.optionEn')}</option>
+              <option value="tr" data-i18n="settings.optionTr">${t('settings.optionTr')}</option>
+            </select>
+          </label>
         </div>
 
         <div class="settings-section">
-          <h3 class="settings-section-title">Editör</h3>
+          <h3 class="settings-section-title" data-i18n="settings.sectionEditor">${t('settings.sectionEditor')}</h3>
 
           <label class="settings-field">
-            <span class="settings-label">Yazı Boyutu</span>
+            <span class="settings-label" data-i18n="settings.labelFontSize">${t('settings.labelFontSize')}</span>
             <select id="set-fontSize" class="settings-select">
-              <option value="small">Küçük</option>
-              <option value="medium">Orta</option>
-              <option value="large">Büyük</option>
-              <option value="xl">Çok Büyük</option>
+              <option value="small" data-i18n="settings.optionSmall">${t('settings.optionSmall')}</option>
+              <option value="medium" data-i18n="settings.optionMedium">${t('settings.optionMedium')}</option>
+              <option value="large" data-i18n="settings.optionLarge">${t('settings.optionLarge')}</option>
+              <option value="xl" data-i18n="settings.optionXl">${t('settings.optionXl')}</option>
             </select>
           </label>
 
           <label class="settings-field settings-toggle-field">
-            <span class="settings-label">Satır Numaraları</span>
+            <span class="settings-label" data-i18n="settings.labelLineNumbers">${t('settings.labelLineNumbers')}</span>
             <button id="set-showLineNumbers" class="settings-toggle" role="switch" aria-checked="false">
               <span class="settings-toggle-thumb"></span>
             </button>
           </label>
 
           <label class="settings-field">
-            <span class="settings-label">Tab Boyutu</span>
+            <span class="settings-label" data-i18n="settings.labelTabSize">${t('settings.labelTabSize')}</span>
             <select id="set-tabSize" class="settings-select">
               <option value="2">2</option>
               <option value="4">4</option>
@@ -91,9 +99,9 @@ const settingsPanelHTML = `
         </div>
 
         <div class="settings-section">
-          <button id="resetAllSettings" class="settings-danger-btn">
+          <button id="resetAllSettings" class="settings-danger-btn" data-i18n="settings.btnResetAll">
             <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
-            Tüm Ayarları Sıfırla
+            ${t('settings.btnResetAll')}
           </button>
         </div>
       </div>
@@ -101,44 +109,44 @@ const settingsPanelHTML = `
       <!-- ══════════ TAB: TOOLS & CANVAS ══════════ -->
       <div class="settings-tab-content" data-tab-content="tools">
         <div class="settings-section">
-          <h3 class="settings-section-title">Fırça</h3>
-
+          <h3 class="settings-section-title" data-i18n="settings.sectionBrush">${t('settings.sectionBrush')}</h3>
+ 
           <label class="settings-field">
-            <span class="settings-label">Fırça Boyutu <span id="brushSizeVal" class="settings-value-badge">3px</span></span>
+            <span class="settings-label"><span data-i18n="settings.labelBrushSize">${t('settings.labelBrushSize')}</span> <span id="brushSizeVal" class="settings-value-badge">3px</span></span>
             <input type="range" id="set-brushSize" class="settings-range" min="1" max="20" value="3" />
           </label>
 
           <label class="settings-field">
-            <span class="settings-label">Fırça Rengi</span>
+            <span class="settings-label" data-i18n="settings.labelBrushColor">${t('settings.labelBrushColor')}</span>
             <div class="settings-color-row" id="brushColorPresets"></div>
           </label>
 
           <label class="settings-field">
-            <span class="settings-label">Çizgi Stili</span>
+            <span class="settings-label" data-i18n="settings.labelLineStyle">${t('settings.labelLineStyle')}</span>
             <select id="set-lineStyle" class="settings-select">
-              <option value="straight">Düz</option>
-              <option value="curved">Eğri</option>
-              <option value="dashed">Kesikli</option>
+              <option value="straight" data-i18n="settings.optionStraight">${t('settings.optionStraight')}</option>
+              <option value="curved" data-i18n="settings.optionCurved">${t('settings.optionCurved')}</option>
+              <option value="dashed" data-i18n="settings.optionDashed">${t('settings.optionDashed')}</option>
             </select>
           </label>
         </div>
 
         <div class="settings-section">
-          <h3 class="settings-section-title">Silgi</h3>
+          <h3 class="settings-section-title" data-i18n="settings.sectionEraser">${t('settings.sectionEraser')}</h3>
 
           <label class="settings-field">
-            <span class="settings-label">Silgi Boyutu <span id="eraserSizeVal" class="settings-value-badge">10px</span></span>
+            <span class="settings-label"><span data-i18n="settings.labelEraserSize">${t('settings.labelEraserSize')}</span> <span id="eraserSizeVal" class="settings-value-badge">10px</span></span>
             <input type="range" id="set-eraserSize" class="settings-range" min="1" max="30" value="10" />
           </label>
         </div>
 
         <div class="settings-section">
-          <h3 class="settings-section-title">Renk Ön Ayarları</h3>
+          <h3 class="settings-section-title" data-i18n="settings.sectionPresets">${t('settings.sectionPresets')}</h3>
           <div class="settings-color-presets-grid" id="colorPresetsGrid"></div>
           <div class="settings-add-color">
             <input type="color" id="newPresetColor" value="#6366f1" class="settings-color-input" />
-            <button id="addPresetColor" class="settings-small-btn">
-              <i data-lucide="plus" class="w-3.5 h-3.5"></i> Ekle
+            <button id="addPresetColor" class="settings-small-btn" data-i18n="settings.btnAddColor">
+              <i data-lucide="plus" class="w-3.5 h-3.5"></i> ${t('settings.btnAddColor')}
             </button>
           </div>
         </div>
@@ -148,13 +156,13 @@ const settingsPanelHTML = `
       <div class="settings-tab-content" data-tab-content="shortcuts">
         <div class="settings-section">
           <div class="settings-shortcuts-header">
-            <h3 class="settings-section-title">Klavye Kısayolları</h3>
-            <button id="resetShortcutsBtn" class="settings-small-btn">
-              <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i> Sıfırla
+            <h3 class="settings-section-title" data-i18n="settings.sectionShortcuts">${t('settings.sectionShortcuts')}</h3>
+            <button id="resetShortcutsBtn" class="settings-small-btn" data-i18n="settings.btnReset">
+              <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i> ${t('settings.btnReset')}
             </button>
           </div>
           <div id="shortcutsList" class="settings-shortcuts-list"></div>
-          <p class="settings-hint">Yeniden atamak için kısayol rozetine tıklayın. İptal için Escape.</p>
+          <p class="settings-hint" data-i18n="settings.hintShortcut">${t('settings.hintShortcut')}</p>
           <div id="shortcut-conflicts" class="settings-conflicts hidden">
             <i data-lucide="alert-triangle" class="w-4 h-4"></i>
             <span id="conflict-message"></span>
@@ -165,39 +173,39 @@ const settingsPanelHTML = `
       <!-- ══════════ TAB: THEME & APPEARANCE ══════════ -->
       <div class="settings-tab-content" data-tab-content="theme">
         <div class="settings-section">
-          <h3 class="settings-section-title">Tema</h3>
+          <h3 class="settings-section-title" data-i18n="settings.sectionTheme">${t('settings.sectionTheme')}</h3>
           <div class="settings-theme-grid">
-            <button class="settings-theme-card" data-theme="light" title="Açık">
+            <button class="settings-theme-card" data-theme="light" data-i18n="settings.themeLight" title="${t('settings.themeLight')}">
               <div class="theme-preview theme-preview-light"></div>
-              <span>Açık</span>
+              <span data-i18n="settings.themeLight">${t('settings.themeLight')}</span>
             </button>
-            <button class="settings-theme-card" data-theme="dark" title="Koyu">
+            <button class="settings-theme-card" data-theme="dark" data-i18n="settings.themeDark" title="${t('settings.themeDark')}">
               <div class="theme-preview theme-preview-dark"></div>
-              <span>Koyu</span>
+              <span data-i18n="settings.themeDark">${t('settings.themeDark')}</span>
             </button>
-            <button class="settings-theme-card" data-theme="black" title="Siyah">
+            <button class="settings-theme-card" data-theme="black" data-i18n="settings.themeBlack" title="${t('settings.themeBlack')}">
               <div class="theme-preview theme-preview-black"></div>
-              <span>Siyah</span>
+              <span data-i18n="settings.themeBlack">${t('settings.themeBlack')}</span>
             </button>
           </div>
         </div>
 
         <div class="settings-section">
-          <h3 class="settings-section-title">Vurgu Rengi</h3>
+          <h3 class="settings-section-title" data-i18n="settings.sectionAccent">${t('settings.sectionAccent')}</h3>
           <div class="settings-color-row" id="accentColorRow">
-            <button class="color-dot active" data-accent="#6366f1" style="background:#6366f1" title="İndigo"></button>
-            <button class="color-dot" data-accent="#2563eb" style="background:#2563eb" title="Mavi"></button>
-            <button class="color-dot" data-accent="#dc2626" style="background:#dc2626" title="Kırmızı"></button>
-            <button class="color-dot" data-accent="#16a34a" style="background:#16a34a" title="Yeşil"></button>
-            <button class="color-dot" data-accent="#d97706" style="background:#d97706" title="Turuncu"></button>
-            <button class="color-dot" data-accent="#7c3aed" style="background:#7c3aed" title="Mor"></button>
-            <button class="color-dot" data-accent="#ec4899" style="background:#ec4899" title="Pembe"></button>
+            <button class="color-dot active" data-accent="#6366f1" style="background:#6366f1"></button>
+            <button class="color-dot" data-accent="#2563eb" style="background:#2563eb"></button>
+            <button class="color-dot" data-accent="#dc2626" style="background:#dc2626"></button>
+            <button class="color-dot" data-accent="#16a34a" style="background:#16a34a"></button>
+            <button class="color-dot" data-accent="#d97706" style="background:#d97706"></button>
+            <button class="color-dot" data-accent="#7c3aed" style="background:#7c3aed"></button>
+            <button class="color-dot" data-accent="#ec4899" style="background:#ec4899"></button>
           </div>
         </div>
 
         <div class="settings-section">
           <label class="settings-field settings-toggle-field">
-            <span class="settings-label">Kompakt Mod</span>
+            <span class="settings-label" data-i18n="settings.labelCompact">${t('settings.labelCompact')}</span>
             <button id="set-compactMode" class="settings-toggle" role="switch" aria-checked="false">
               <span class="settings-toggle-thumb"></span>
             </button>
@@ -263,6 +271,10 @@ function initSelect(id, key, isNumber) {
 
 initSelect('set-defaultView', 'defaultView');
 initSelect('set-fontSize', 'fontSize');
+initSelect('set-language', 'language');
+document.getElementById('set-language').addEventListener('change', function() {
+  setLanguage(this.value);
+});
 initSelect('set-tabSize', 'tabSize', true);
 initSelect('set-lineStyle', 'lineStyle');
 
@@ -371,6 +383,17 @@ document.querySelectorAll('#accentColorRow .color-dot').forEach(dot => {
 document.documentElement.style.setProperty('--accent-color', getSetting('accentColor'));
 
 /* ----------------- Shortcuts Manager (inside Settings) ----------------- */
+const SHORTCUT_I18N_KEYS = {
+  newPage: 'shortcuts.descNewPage',
+  newTextBlock: 'shortcuts.descNewBlock',
+  deleteBlock: 'shortcuts.descDeleteBlock',
+  commandPal: 'shortcuts.descCommandPal',
+  toggleSide: 'shortcuts.descToggleSide',
+  toggleTheme: 'shortcuts.descToggleTheme',
+  undo: 'shortcuts.descUndo',
+  redo: 'shortcuts.descRedo'
+};
+
 function renderShortcutsList() {
   const list = document.getElementById('shortcutsList');
   list.innerHTML = '';
@@ -390,7 +413,7 @@ function renderShortcutsList() {
       startRecording(id);
     });
 
-    row.innerHTML = `<span class="text-sm text-slate-600 dark:text-slate-300">${sc.desc}</span>`;
+    row.innerHTML = `<span class="text-sm text-slate-600 dark:text-slate-300">${t(SHORTCUT_I18N_KEYS[id] || sc.desc)}</span>`;
     row.appendChild(badge);
     list.appendChild(row);
   }
@@ -400,7 +423,7 @@ function renderShortcutsList() {
   if (conflicts.length > 0) {
     conflictEl.classList.remove('hidden');
     document.getElementById('conflict-message').textContent =
-      conflicts.map(c => c.label).join(', ') + ' arasında çakışma var!';
+      t('settings.shortcutConflict', conflicts.map(c => c.label).join(', '));
   } else {
     conflictEl.classList.add('hidden');
   }
@@ -450,7 +473,7 @@ document.getElementById('resetShortcutsBtn').addEventListener('click', () => {
 
 /* ----------------- Reset All Settings ----------------- */
 document.getElementById('resetAllSettings').addEventListener('click', () => {
-  if (confirm('Tüm ayarları varsayılana sıfırlamak istiyor musunuz?')) {
+  if (confirm(t('settings.confirmResetAll'))) {
     resetSettings();
     applySettings();
     // Refresh panel UI
@@ -495,6 +518,11 @@ settingsOverlay.addEventListener('click', hideSettingsPanel);
 
 // Wire up sidebar shortcut button
 document.getElementById('shortcutsBtn').addEventListener('click', showSettingsPanel);
+
+// Re-render shortcuts when language changes
+window.addEventListener('doralangchange', () => {
+  if (settingsPanelEl.classList.contains('open')) renderShortcutsList();
+});
 
 /* ----------------- Legacy: keep shortcuts-panel functions for compat ----------------- */
 // init.js references shortcutsPanelEl

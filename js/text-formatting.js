@@ -306,7 +306,7 @@
       navigator.clipboard.writeText(textarea.value).then(() => {
         const original = copyBtn.innerHTML;
         copyBtn.classList.add('copied');
-        copyBtn.innerHTML = '<span>Kopyalandı!</span>';
+        copyBtn.innerHTML = '<span>' + t('block.copied') + '</span>';
         setTimeout(() => {
           copyBtn.classList.remove('copied');
           copyBtn.innerHTML = original;

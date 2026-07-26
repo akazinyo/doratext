@@ -62,14 +62,14 @@ function renderAutocompleteDropdown() {
     autocompleteList.innerHTML = `
       <div class="autocomplete-item autocomplete-create-new active" data-action="create-new">
         <i data-lucide="plus-circle" class="w-4 h-4"></i>
-        <span class="text-sm">Yeni Proje Oluştur: '${escapeHtml(query)}'</span>
+        <span class="text-sm">${t('autocomplete.create')}: '${escapeHtml(query)}'</span>
       </div>
     `;
   } else {
     autocompleteList.innerHTML = items.map((page, index) => `
       <div class="autocomplete-item ${index === activeIndex ? 'active' : ''}" data-index="${index}" data-page-id="${page.id}">
         <i data-lucide="file-text" class="w-4 h-4"></i>
-        <span class="text-sm">${escapeHtml(page.title || 'İsimsiz')}</span>
+        <span class="text-sm">${escapeHtml(page.title || t('page.untitled'))}</span>
       </div>
     `).join('');
   }

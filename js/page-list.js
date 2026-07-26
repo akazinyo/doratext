@@ -7,12 +7,12 @@ function renderPageList() {
     item.style.paddingLeft = (depth * 20) + 'px';
     item.innerHTML = `
       <i data-lucide="file-text" class="w-4 h-4 flex-shrink-0"></i>
-      <span class="page-title" contenteditable="false">${escapeHtml(page.title || 'İsimsiz')}</span>
+      <span class="page-title" contenteditable="false">${escapeHtml(page.title || t('page.untitled'))}</span>
       <div class="page-actions">
-        <button class="page-action-btn rename-page-btn text-slate-500 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-400" title="Yeniden Adlandır">
+        <button class="page-action-btn rename-page-btn text-slate-500 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-400" title="${t('page.rename')}">
           <i data-lucide="pencil" class="w-3 h-3"></i>
         </button>
-        <button class="page-action-btn delete-page-btn text-slate-500 hover:text-red-600 dark:text-slate-400 dark:hover:text-red-400" title="Sil">
+        <button class="page-action-btn delete-page-btn text-slate-500 hover:text-red-600 dark:text-slate-400 dark:hover:text-red-400" title="${t('page.delete')}">
           <i data-lucide="x" class="w-3 h-3"></i>
         </button>
       </div>

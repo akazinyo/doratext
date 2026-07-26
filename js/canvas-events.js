@@ -7,7 +7,7 @@
 
     /* ----------------- Page management ----------------- */
     newPageBtn.addEventListener('click', () => {
-      const title = prompt('Sayfa adı girin:', 'Yeni Sayfa');
+      const title = prompt(t('page.promptName'), t('page.promptNew'));
       if (title !== null && title.trim() !== '') {
         createPage(title.trim());
       }
@@ -23,7 +23,7 @@
     /* ----------------- Clear canvas ----------------- */
     clearBtn.addEventListener('click', () => {
       if (!blocks.length && !connections.length && !freeDrawings.length && !independentCodeCards.length) return;
-      if (confirm('Mevcut sayfayı temizlemek istiyor musunuz? Bu işlem geri alınamaz.')) {
+      if (confirm(t('canvas.clearConfirm'))) {
         blocks = [];
         connections = [];
         freeDrawings = [];

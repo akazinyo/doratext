@@ -199,11 +199,11 @@ function switchPage(pageId) {
 
 function deletePage(pageId) {
   if (pagesData.pagesList.length <= 1) {
-    alert('En az bir sayfa bulundurmalısınız.');
+    alert(t('page.keepOne'));
     return;
   }
   const page = pagesData.pagesList.find(p => p.id === pageId);
-  if (!confirm(`"${page?.title || 'İsimsiz'}" sayfasını silmek istiyor musunuz? Bu işlem geri alınamaz.`)) return;
+  if (!confirm(t('page.deleteConfirm', page?.title || t('page.untitled')))) return;
 
   deleteSubPagesRecursive(pageId);
   pagesData.pagesList = pagesData.pagesList.filter(p => p.id !== pageId);

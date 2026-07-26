@@ -8,7 +8,7 @@
           e.preventDefault();
           switch (id) {
             case 'newPage':
-              const title = prompt('Sayfa adı girin:', 'Yeni Sayfa');
+              const title = prompt(t('page.promptName'), t('page.promptNew'));
               if (title && title.trim()) createPage(title.trim());
               break;
             case 'newTextBlock':
@@ -19,7 +19,7 @@
             case 'deleteBlock':
               if (blocks.length > 0) {
                 const last = blocks[blocks.length - 1];
-                if (confirm('Son bloğu silmek istiyor musunuz?')) deleteBlock(last.id);
+                if (confirm(t('block.deleteLast'))) deleteBlock(last.id);
               }
               break;
             case 'toggleSide':
@@ -46,3 +46,4 @@
     /* ----------------- Init ----------------- */
     loadWorkspace();
     lucide.createIcons();
+    applyTranslation();
