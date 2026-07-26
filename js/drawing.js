@@ -61,11 +61,7 @@
     }
 
     function eraseAtPoint(e) {
-      const rect = canvas.getBoundingClientRect();
-      const pt = {
-        x: e.clientX - rect.left + canvas.scrollLeft,
-        y: e.clientY - rect.top + canvas.scrollTop
-      };
+      const pt = canvasPoint(e);
       const radius = getSetting('eraserSize');
       let changed = false;
 
@@ -93,21 +89,13 @@
 
 
 
-    function getCanvasPoint(e) {
-      const rect = canvas.getBoundingClientRect();
-      return {
-        x: e.clientX - rect.left + canvas.scrollLeft,
-        y: e.clientY - rect.top + canvas.scrollTop
-      };
-    }
-
     function startFreeDraw(e) {
       if (!freeDrawMode) return;
       if (e.button !== 0) return;
       if (e.target.closest('.note-block') || e.target.closest('.socket')) return;
       e.preventDefault();
 
-      const pt = getCanvasPoint(e);
+      const pt = canvasPoint(e);
       const stroke = {
         id: nextDrawingId++,
         color: getSetting('brushColor'),
@@ -124,7 +112,7 @@
     function updateFreeDraw(e) {
       if (!freeDrawState) return;
       e.preventDefault();
-      const pt = getCanvasPoint(e);
+      const pt = canvasPoint(e);
       freeDrawState.stroke.points.push(pt);
       updateStrokePath(freeDrawState.stroke, freeDrawState.currentPath);
     }

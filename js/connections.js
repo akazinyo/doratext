@@ -147,9 +147,8 @@
 
     function onDrawMove(e) {
       if (!drawState) return;
-      const rect = canvas.getBoundingClientRect();
-      const x = e.clientX - rect.left + canvas.scrollLeft;
-      const y = e.clientY - rect.top + canvas.scrollTop;
+      const pt = canvasPoint(e);
+      const x = pt.x, y = pt.y;
       const d = buildPath(
         { x: drawState.startX, y: drawState.startY },
         { x, y },

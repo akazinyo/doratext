@@ -20,6 +20,10 @@ const settingsPanelHTML = `
         <i data-lucide="paintbrush" class="w-4 h-4"></i>
         <span data-i18n="settings.tabTools">${t('settings.tabTools')}</span>
       </button>
+      <button class="settings-tab" data-tab="minimap">
+        <i data-lucide="map" class="w-4 h-4"></i>
+        <span data-i18n="settings.tabMinimap">${t('settings.tabMinimap')}</span>
+      </button>
       <button class="settings-tab" data-tab="shortcuts">
         <i data-lucide="keyboard" class="w-4 h-4"></i>
         <span data-i18n="settings.tabShortcuts">${t('settings.tabShortcuts')}</span>
@@ -149,6 +153,34 @@ const settingsPanelHTML = `
               <i data-lucide="plus" class="w-3.5 h-3.5"></i> ${t('settings.btnAddColor')}
             </button>
           </div>
+        </div>
+      </div>
+
+      <!-- ══════════ TAB: MINIMAP ══════════ -->
+      <div class="settings-tab-content" data-tab-content="minimap">
+        <div class="settings-section">
+          <h3 class="settings-section-title" data-i18n="settings.sectionMinimap">${t('settings.sectionMinimap')}</h3>
+
+          <label class="settings-field settings-toggle-field">
+            <span class="settings-label" data-i18n="settings.labelMinimapVisible">${t('settings.labelMinimapVisible')}</span>
+            <button id="set-minimapVisible" class="settings-toggle" role="switch" aria-checked="true">
+              <span class="settings-toggle-thumb"></span>
+            </button>
+          </label>
+
+          <label class="settings-field">
+            <span class="settings-label" data-i18n="settings.labelMinimapSize">${t('settings.labelMinimapSize')}</span>
+            <select id="set-minimapSize" class="settings-select">
+              <option value="small" data-i18n="settings.optionSmall">${t('settings.optionSmall')}</option>
+              <option value="medium" data-i18n="settings.optionMedium">${t('settings.optionMedium')}</option>
+              <option value="large" data-i18n="settings.optionLarge">${t('settings.optionLarge')}</option>
+            </select>
+          </label>
+
+          <label class="settings-field">
+            <span class="settings-label"><span data-i18n="settings.labelMinimapOpacity">${t('settings.labelMinimapOpacity')}</span> <span id="minimapOpacityVal" class="settings-value-badge">65%</span></span>
+            <input type="range" id="set-minimapOpacity" class="settings-range" min="20" max="100" value="65" />
+          </label>
         </div>
       </div>
 
@@ -290,11 +322,16 @@ function initRange(id, key, displayId, unit) {
   });
   el.addEventListener('change', () => {
     setSetting(key, Number(el.value));
+    applySettings();
   });
 }
 
 initRange('set-brushSize', 'brushSize', 'brushSizeVal', 'px');
 initRange('set-eraserSize', 'eraserSize', 'eraserSizeVal', 'px');
+
+initToggle('set-minimapVisible', 'minimapVisible');
+initSelect('set-minimapSize', 'minimapSize');
+initRange('set-minimapOpacity', 'minimapOpacity', 'minimapOpacityVal', '%');
 
 /* ----------------- Brush color presets ----------------- */
 function renderBrushColorPresets() {
@@ -388,11 +425,12 @@ const SHORTCUT_I18N_KEYS = {
   newTextBlock: 'shortcuts.descNewBlock',
   deleteBlock: 'shortcuts.descDeleteBlock',
   commandPal: 'shortcuts.descCommandPal',
-  toggleSide: 'shortcuts.descToggleSide',
-  toggleTheme: 'shortcuts.descToggleTheme',
-  undo: 'shortcuts.descUndo',
-  redo: 'shortcuts.descRedo'
-};
+    toggleSide: 'shortcuts.descToggleSide',
+    toggleTheme: 'shortcuts.descToggleTheme',
+    undo: 'shortcuts.descUndo',
+    redo: 'shortcuts.descRedo',
+    toggleMinimap: 'shortcuts.descToggleMinimap'
+  };
 
 function renderShortcutsList() {
   const list = document.getElementById('shortcutsList');
@@ -487,7 +525,10 @@ document.getElementById('resetAllSettings').addEventListener('click', () => {
     document.getElementById('set-eraserSize').value = 10;
     document.getElementById('brushSizeVal').textContent = '3px';
     document.getElementById('eraserSizeVal').textContent = '10px';
-    ['set-gridVisible', 'set-autoSave', 'set-showLineNumbers', 'set-compactMode'].forEach(id => {
+    document.getElementById('set-minimapSize').value = 'medium';
+    document.getElementById('set-minimapOpacity').value = 65;
+    document.getElementById('minimapOpacityVal').textContent = '65%';
+    ['set-gridVisible', 'set-autoSave', 'set-showLineNumbers', 'set-compactMode', 'set-minimapVisible'].forEach(id => {
       const el = document.getElementById(id);
       const val = getSetting(id.replace('set-', ''));
       el.setAttribute('aria-checked', String(!!val));

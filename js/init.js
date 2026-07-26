@@ -37,6 +37,9 @@
             case 'redo':
               redo();
               break;
+            case 'toggleMinimap':
+              toggleMinimap();
+              break;
           }
           return;
         }
@@ -45,5 +48,6 @@
 
     /* ----------------- Init ----------------- */
     loadWorkspace();
+    if (typeof renderMinimap === 'function') renderMinimap();
     lucide.createIcons();
     applyTranslation();

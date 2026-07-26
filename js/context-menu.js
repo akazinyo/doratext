@@ -2,9 +2,8 @@
     canvas.addEventListener('dblclick', (e) => {
       if (freeDrawMode) return;
       if (e.target !== canvas && !e.target.closest('#emptyState')) return;
-      const x = e.clientX - canvas.getBoundingClientRect().left + canvas.scrollLeft;
-      const y = e.clientY - canvas.getBoundingClientRect().top + canvas.scrollTop;
-      const block = createBlock('text', '', x, y);
+      const pt = canvasPoint(e);
+      const block = createBlock('text', '', pt.x, pt.y);
       const content = document.querySelector(`#block-${block.id} .block-content`);
       if (content) content.focus();
     });
@@ -148,19 +147,17 @@
     function handleContextAction(action, btn) {
       switch (action) {
         case 'addText': {
-          const rect = canvas.getBoundingClientRect();
-          const bx = (contextTarget?.x || rect.left + 40) - rect.left + canvas.scrollLeft;
-          const by = (contextTarget?.y || rect.top + 40) - rect.top + canvas.scrollTop;
+          const bx = contextTarget?.x || (-panX / zoom) + 40;
+          const by = contextTarget?.y || (-panY / zoom) + 40;
           const block = createBlock('text', '', bx, by);
           const content = document.querySelector(`#block-${block.id} .block-content`);
           if (content) content.focus();
           break;
         }
         case 'addImage': {
-          const rect = canvas.getBoundingClientRect();
           pendingImageDrop = {
-            x: (contextTarget?.x || rect.left + 40) - rect.left + canvas.scrollLeft,
-            y: (contextTarget?.y || rect.top + 40) - rect.top + canvas.scrollTop
+            x: contextTarget?.x || (-panX / zoom) + 40,
+            y: contextTarget?.y || (-panY / zoom) + 40
           };
           imageInput.click();
           break;
@@ -169,8 +166,8 @@
           clearBtn.click();
           break;
         case 'createCodeCard': {
-          const cx = contextTarget?.x || (canvas.getBoundingClientRect().left + 40 + canvas.scrollLeft);
-          const cy = contextTarget?.y || (canvas.getBoundingClientRect().top + 40 + canvas.scrollTop);
+          const cx = contextTarget?.x || (-panX / zoom) + 40;
+          const cy = contextTarget?.y || (-panY / zoom) + 40;
           createIndependentCodeCard(cx, cy);
           break;
         }

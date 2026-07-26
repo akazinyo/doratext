@@ -209,19 +209,21 @@
     </aside>
 
     <!-- Workspace Canvas -->
-    <main id="canvas" class="relative overflow-auto">
-      <svg id="connection-svg">
-        <defs>
-          <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-            <polygon points="0 0, 10 3.5, 0 7" fill="currentColor" class="text-slate-700 dark:text-slate-300" />
-          </marker>
-        </defs>
-      </svg>
-      <svg id="drawing-svg"></svg>
-      <div id="emptyState" class="empty-state absolute inset-0 flex flex-col items-center justify-center text-slate-400 dark:text-slate-500">
-        <i data-lucide="mouse-pointer-2" class="w-14 h-14 mb-4 opacity-60"></i>
-        <p class="text-lg font-medium" data-i18n="canvas.emptyTitle">Your canvas is empty</p>
-        <p class="text-sm mt-1" data-i18n="canvas.emptyHint">Add text blocks, drop images, or double-click anywhere to start.</p>
+    <main id="canvas" class="relative overflow-hidden">
+      <div id="canvas-zoom">
+        <svg id="connection-svg">
+          <defs>
+            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+              <polygon points="0 0, 10 3.5, 0 7" fill="currentColor" class="text-slate-700 dark:text-slate-300" />
+            </marker>
+          </defs>
+        </svg>
+        <svg id="drawing-svg"></svg>
+        <div id="emptyState" class="empty-state absolute inset-0 flex flex-col items-center justify-center text-slate-400 dark:text-slate-500">
+          <i data-lucide="mouse-pointer-2" class="w-14 h-14 mb-4 opacity-60"></i>
+          <p class="text-lg font-medium" data-i18n="canvas.emptyTitle">Your canvas is empty</p>
+          <p class="text-sm mt-1" data-i18n="canvas.emptyHint">Add text blocks, drop images, or double-click anywhere to start.</p>
+        </div>
       </div>
     </main>
   </div>
@@ -247,6 +249,12 @@
   <script src="js/todo.js"></script>
   <script src="js/context-menu.js"></script>
   <script src="js/settings-panel.js"></script>
+  <div id="minimap">
+    <canvas id="minimap-canvas"></canvas>
+    <div id="minimap-viewport"></div>
+  </div>
+
+  <script src="js/minimap.js"></script>
   <script src="js/init.js"></script>
 </body>
 </html>

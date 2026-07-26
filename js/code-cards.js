@@ -2,8 +2,8 @@
     function createIndependentCodeCard(x, y) {
       const card = {
         id: nextCodeCardId++,
-        x: x - canvas.getBoundingClientRect().left + canvas.scrollLeft,
-        y: y - canvas.getBoundingClientRect().top + canvas.scrollTop,
+        x: x,
+        y: y,
         width: 500, height: null,
         language: 'javascript', code: ''
       };
@@ -50,7 +50,7 @@
           <textarea class="code-textarea absolute inset-0 w-full h-full p-4 bg-transparent text-transparent caret-white font-mono text-sm leading-relaxed outline-none resize-none overflow-hidden whitespace-pre break-all border-none" spellcheck="false" placeholder="// Kodunuzu buraya yazın veya yapıştırın..."></textarea>
         </div>`;
 
-      canvas.appendChild(el);
+      document.getElementById('canvas-zoom').appendChild(el);
 
       const select = el.querySelector('.code-lang-select');
       const textarea = el.querySelector('.code-textarea');

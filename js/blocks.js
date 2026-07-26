@@ -1,13 +1,11 @@
 /* ----------------- Block factory ----------------- */
 function createBlock(type, content = '', x = null, y = null, width = null, height = null) {
-  const scrollLeft = canvas.scrollLeft;
-  const scrollTop = canvas.scrollTop;
   const defaults = { text: { w: 320, h: 180 }, image: { w: 300, h: 200 } };
 
   const block = {
     id: nextId++, type, content,
-    x: x ?? scrollLeft + 40 + (blocks.length % 5) * 20,
-    y: y ?? scrollTop + 40 + (blocks.length % 5) * 20,
+    x: x ?? -(panX / zoom) + 40 + (blocks.length % 5) * 20,
+    y: y ?? -(panY / zoom) + 40 + (blocks.length % 5) * 20,
     width: width ?? defaults[type].w,
     height: height ?? defaults[type].h,
     bgColor: 'white',
@@ -462,7 +460,7 @@ function renderBlock(block) {
   // Resize start
   resizeHandle.addEventListener('pointerdown', (e) => startResize(e, block, el));
 
-  canvas.appendChild(el);
+  document.getElementById('canvas-zoom').appendChild(el);
   lucide.createIcons({ parent: el });
 }
 

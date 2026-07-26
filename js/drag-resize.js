@@ -22,10 +22,10 @@
     function onDragMove(e) {
       if (!dragState) return;
       e.preventDefault();
-      const dx = e.clientX - dragState.startX;
-      const dy = e.clientY - dragState.startY;
-      dragState.block.x = Math.max(0, dragState.initialLeft + dx);
-      dragState.block.y = Math.max(0, dragState.initialTop + dy);
+      const dx = (e.clientX - dragState.startX) / zoom;
+      const dy = (e.clientY - dragState.startY) / zoom;
+      dragState.block.x = dragState.initialLeft + dx;
+      dragState.block.y = dragState.initialTop + dy;
       dragState.el.style.left = `${dragState.block.x}px`;
       dragState.el.style.top = `${dragState.block.y}px`;
       updateConnectionsRealtime();
@@ -42,7 +42,7 @@
       dragState = null;
       saveWorkspace();
     }
-
+ 
     /* ----------------- Resizing ----------------- */
     function startResize(e, block, el) {
       if (e.button !== 0) return;
@@ -65,8 +65,8 @@
     function onResizeMove(e) {
       if (!resizeState) return;
       e.preventDefault();
-      const dx = e.clientX - resizeState.startX;
-      const dy = e.clientY - resizeState.startY;
+      const dx = (e.clientX - resizeState.startX) / zoom;
+      const dy = (e.clientY - resizeState.startY) / zoom;
 
       let newW = Math.max(120, resizeState.initialWidth + dx);
       let newH = Math.max(80, resizeState.initialHeight + dy);

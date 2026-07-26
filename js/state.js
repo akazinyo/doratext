@@ -79,3 +79,28 @@
       renderPageList();
       styleHeaderLinks();
     }
+
+    /* ----------------- Canvas pan / zoom ----------------- */
+    const PAN_KEY = 'doranote_pan';
+    let panX = 0, panY = 0, zoom = 1;
+
+    function loadPan() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(PAN_KEY));
+        if (saved) { panX = saved.x || 0; panY = saved.y || 0; zoom = saved.z || 1; }
+      } catch {}
+    }
+
+    function savePan() {
+      localStorage.setItem(PAN_KEY, JSON.stringify({ x: panX, y: panY, z: zoom }));
+    }
+
+    function canvasPoint(e) {
+      const rect = canvas.getBoundingClientRect();
+      return {
+        x: (e.clientX - rect.left - panX) / zoom,
+        y: (e.clientY - rect.top - panY) / zoom
+      };
+    }
+
+    loadPan();

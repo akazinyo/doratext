@@ -9,6 +9,7 @@
       toggleTheme:  { key: 'd', ctrl: true,  shift: false, alt: false, desc: 'Temayı Değiştir' },
       undo:         { key: 'z', ctrl: true,  shift: false, alt: false, desc: 'Geri Al' },
       redo:         { key: 'z', ctrl: true,  shift: true,  alt: false, desc: 'İleri Al' },
+      toggleMinimap:{ key: 'm', ctrl: false, shift: false, alt: false, desc: 'Mini Haritayı Aç/Kapat' },
     };
     let shortcuts = {};
 

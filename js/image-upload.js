@@ -21,8 +21,8 @@
     imageInput.addEventListener('change', (e) => {
       const file = e.target.files[0];
       if (!file) return;
-      const x = pendingImageDrop ? pendingImageDrop.x : canvas.scrollLeft + 40;
-      const y = pendingImageDrop ? pendingImageDrop.y : canvas.scrollTop + 40;
+      const x = pendingImageDrop ? pendingImageDrop.x : (-panX / zoom) + 40;
+      const y = pendingImageDrop ? pendingImageDrop.y : (-panY / zoom) + 40;
       processImageFile(file, x, y);
       pendingImageDrop = null;
       imageInput.value = '';
@@ -42,9 +42,8 @@
       e.preventDefault();
       canvas.classList.remove('drag-over');
 
-      const rect = canvas.getBoundingClientRect();
-      const x = e.clientX - rect.left + canvas.scrollLeft;
-      const y = e.clientY - rect.top + canvas.scrollTop;
+      const pt = canvasPoint(e);
+      const x = pt.x, y = pt.y;
 
       const files = Array.from(e.dataTransfer.files);
       const imageFiles = files.filter(f => /image\/(png|jpeg|jpg|gif)/i.test(f.type));

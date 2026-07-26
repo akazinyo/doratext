@@ -25,6 +25,11 @@ const DEFAULT_SETTINGS = {
   theme: 'light',              // 'light' | 'dark' | 'black'
   accentColor: '#6366f1',
   compactMode: false,
+
+  // Minimap
+  minimapVisible: true,
+  minimapSize: 'medium',       // 'small' | 'medium' | 'large'
+  minimapOpacity: 65,          // 20–100 (%)
 };
 
 let settings = {};
@@ -85,6 +90,9 @@ function applySettings() {
   // Language
   const lang = getSetting('language') || 'en';
   if (typeof setLanguage === 'function') setLanguage(lang);
+
+  // Minimap
+  if (typeof applyMinimapSettings === 'function') applyMinimapSettings();
 }
 
 loadSettings();
