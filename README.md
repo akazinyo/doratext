@@ -1,8 +1,8 @@
 $\color{red}{\text{UPDATE}}$ <br>
 ------------------------------------------------------------------------------------------------------------------------ <br>
 $\color{purple}{\text{V 0.8}}$ <br>
-*Ayarlar kısmı güncellendi ve konumu değişti.
-*Ufak tefek optimizasyonlar giderilmeye çalıştı(ayarları değiştirince temanın sıfırlanması gibi)
+*Ayarlar kısmı güncellendi ve konumu değişti. <br>
+*Ufak tefek optimizasyonlar giderilmeye çalıştı(ayarları değiştirince temanın sıfırlanması gibi) <br>
 *Artık metin ve kod dosyası ekleyebilip düzenleyebilip görüntüleyebilirsiniz sırayı yanlış yazdım :D
 
 $\color{blue}{\text{V 0.7c}}$ <br>
