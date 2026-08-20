@@ -291,5 +291,7 @@
         hideContextMenu();
         hideAutocompleteDropdown();
         clearSelection();
+        if (settingsPanelEl.classList.contains('open')) hideSettingsPanel();
+        if (document.getElementById('fileViewer')?.classList.contains('open')) closeFileViewer();
       }
     });

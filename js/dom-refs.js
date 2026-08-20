@@ -3,8 +3,10 @@
     const svg = document.getElementById('connection-svg');
     const drawingSvg = document.getElementById('drawing-svg');
     const emptyState = document.getElementById('emptyState');
-    const addTextBtn = document.getElementById('addTextBtn');
-    const addImageBtn = document.getElementById('addImageBtn');
+    const addBtn = document.getElementById('addBtn');
+    const addMenu = document.getElementById('addMenu');
+    const addMenuWrap = document.getElementById('addMenuWrap');
+    const fileInput = document.getElementById('fileInput');
     const clearBtn = document.getElementById('clearBtn');
     const themeToggle = document.getElementById('themeToggle');
     const drawLineBtn = document.getElementById('drawLineBtn');
@@ -45,7 +47,8 @@
     themeToggle.addEventListener('click', () => {
       const idx = THEMES.indexOf(theme);
       theme = THEMES[(idx + 1) % THEMES.length];
-      applyTheme();
+      setSetting('theme', theme);
+      applySettings();
       renderConnections();
       renderStrokes();
       lucide.createIcons();

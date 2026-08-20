@@ -4,7 +4,9 @@ function getCurrentPageState() {
     blocks: blocks.map(b => ({
       id: b.id, type: b.type, content: b.content,
       x: b.x, y: b.y, width: b.width, height: b.height,
-      bgColor: b.bgColor, fontSize: b.fontSize
+      bgColor: b.bgColor, fontSize: b.fontSize,
+      fileName: b.fileName, fileSize: b.fileSize, fileType: b.fileType,
+      fileLang: b.fileLang, binary: b.binary
     })),
     connections: connections.map(c => ({
       id: c.id,

@@ -82,7 +82,7 @@
       shortcutsPanelEl.classList.add('hidden');
     }
 
-    shortcutsBtn.addEventListener('click', showShortcutsPanel);
+    shortcutsBtn?.addEventListener('click', showShortcutsPanel);
     closeShortcutsPanel.addEventListener('click', hideShortcutsPanel);
     shortcutsOverlay.addEventListener('click', hideShortcutsPanel);
     resetShortcutsBtn.addEventListener('click', () => { resetShortcuts(); renderShortcutsPanel(); });

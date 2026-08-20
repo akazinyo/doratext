@@ -71,7 +71,16 @@ function applySettings() {
   applyTheme();
 
   // Brush / drawing defaults
-  if (lineColorSelect) lineColorSelect.value = getSetting('brushColor');
+  if (lineColorSelect) {
+    const brushColor = getSetting('brushColor');
+    if (![...lineColorSelect.options].some(o => o.value === brushColor)) {
+      const opt = document.createElement('option');
+      opt.value = brushColor;
+      opt.textContent = brushColor;
+      lineColorSelect.appendChild(opt);
+    }
+    lineColorSelect.value = brushColor;
+  }
   if (lineStyleSelect) lineStyleSelect.value = getSetting('lineStyle');
 
   // Grid visibility
@@ -93,6 +102,9 @@ function applySettings() {
 
   // Minimap
   if (typeof applyMinimapSettings === 'function') applyMinimapSettings();
+
+  // Settings panel theme cards (if open)
+  if (typeof syncThemeCards === 'function') syncThemeCards();
 }
 
 loadSettings();

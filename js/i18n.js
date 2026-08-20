@@ -24,6 +24,7 @@ const LANGUAGES = {
     'toolbar.tooltipPencil': 'Toggle freehand drawing mode',
     'toolbar.tooltipEraser': 'Toggle eraser mode',
     'toolbar.tooltipTheme': 'Toggle theme',
+    'toolbar.settings': 'Settings',
 
     // Sidebar
     'sidebar.newPage': 'New Page',
@@ -37,6 +38,7 @@ const LANGUAGES = {
     // Context menu
     'ctx.addText': 'Add Text Block',
     'ctx.addImage': 'Add Image Block',
+    'ctx.addFile': 'Add File',
     'ctx.codeCard': 'Create Code Block',
     'ctx.clear': 'Clear Workspace',
     'ctx.bulletList': 'Bulleted List',
@@ -135,6 +137,11 @@ const LANGUAGES = {
     'block.colLabel': 'Column',
     'block.dataCell': 'Data',
 
+    // Files
+    'file.untitled': 'File',
+    'file.binary': 'Binary file',
+    'file.readError': 'Could not read the file.',
+
     // Canvas
     'canvas.clearConfirm': 'Clear the current page? This cannot be undone.',
 
@@ -178,6 +185,7 @@ const LANGUAGES = {
     'toolbar.tooltipPencil': 'Serbest çizim modunu aç/kapat',
     'toolbar.tooltipEraser': 'Silgi modunu aç/kapat',
     'toolbar.tooltipTheme': 'Temayı değiştir',
+    'toolbar.settings': 'Ayarlar',
 
     'sidebar.newPage': 'Yeni Sayfa',
     'sidebar.tooltipShortcuts': 'Kısayollar',
@@ -188,6 +196,7 @@ const LANGUAGES = {
 
     'ctx.addText': 'Metin Bloğu Ekle',
     'ctx.addImage': 'Resim Bloğu Ekle',
+    'ctx.addFile': 'Dosya Ekle',
     'ctx.codeCard': 'Kod Bloğu Oluştur',
     'ctx.clear': 'Çalışma Alanını Temizle',
     'ctx.bulletList': 'Madde İşaretli Liste',
@@ -282,6 +291,11 @@ const LANGUAGES = {
     'block.plainText': 'Düz Metin',
     'block.colLabel': 'Başlık',
     'block.dataCell': 'Veri',
+
+    // Files
+    'file.untitled': 'Dosya',
+    'file.binary': 'İkili dosya',
+    'file.readError': 'Dosya okunamadı.',
 
     'canvas.clearConfirm': 'Mevcut sayfayı temizlemek istiyor musunuz? Bu işlem geri alınamaz.',
 

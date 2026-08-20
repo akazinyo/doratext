@@ -48,6 +48,7 @@
 
     /* ----------------- Init ----------------- */
     loadWorkspace();
+    applySettings();
     if (typeof renderMinimap === 'function') renderMinimap();
     lucide.createIcons();
     applyTranslation();

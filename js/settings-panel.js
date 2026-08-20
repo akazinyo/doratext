@@ -5,36 +5,40 @@ const settingsPanelHTML = `
   <div id="settings-overlay" class="settings-overlay hidden"></div>
   <div id="settings-panel" class="settings-panel">
     <div class="settings-header">
-      <h2 class="settings-title" data-i18n="settings.title">${t('settings.title')}</h2>
+      <h2 class="settings-title">
+        <span class="settings-title-icon"><i data-lucide="settings" class="w-4 h-4"></i></span>
+        <span data-i18n="settings.title">${t('settings.title')}</span>
+      </h2>
       <button id="closeSettings" class="settings-close-btn" data-i18n="settings.btnClose" title="${t('settings.btnClose')}">
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
     </div>
 
-    <div class="settings-tabs">
-      <button class="settings-tab active" data-tab="general">
-        <i data-lucide="settings-2" class="w-4 h-4"></i>
-        <span data-i18n="settings.tabGeneral">${t('settings.tabGeneral')}</span>
-      </button>
-      <button class="settings-tab" data-tab="tools">
-        <i data-lucide="paintbrush" class="w-4 h-4"></i>
-        <span data-i18n="settings.tabTools">${t('settings.tabTools')}</span>
-      </button>
-      <button class="settings-tab" data-tab="minimap">
-        <i data-lucide="map" class="w-4 h-4"></i>
-        <span data-i18n="settings.tabMinimap">${t('settings.tabMinimap')}</span>
-      </button>
-      <button class="settings-tab" data-tab="shortcuts">
-        <i data-lucide="keyboard" class="w-4 h-4"></i>
-        <span data-i18n="settings.tabShortcuts">${t('settings.tabShortcuts')}</span>
-      </button>
-      <button class="settings-tab" data-tab="theme">
-        <i data-lucide="palette" class="w-4 h-4"></i>
-        <span data-i18n="settings.tabTheme">${t('settings.tabTheme')}</span>
-      </button>
-    </div>
+    <div class="settings-layout">
+      <nav class="settings-nav">
+        <button class="settings-tab active" data-tab="general">
+          <i data-lucide="settings-2" class="w-4 h-4"></i>
+          <span data-i18n="settings.tabGeneral">${t('settings.tabGeneral')}</span>
+        </button>
+        <button class="settings-tab" data-tab="tools">
+          <i data-lucide="paintbrush" class="w-4 h-4"></i>
+          <span data-i18n="settings.tabTools">${t('settings.tabTools')}</span>
+        </button>
+        <button class="settings-tab" data-tab="minimap">
+          <i data-lucide="map" class="w-4 h-4"></i>
+          <span data-i18n="settings.tabMinimap">${t('settings.tabMinimap')}</span>
+        </button>
+        <button class="settings-tab" data-tab="shortcuts">
+          <i data-lucide="keyboard" class="w-4 h-4"></i>
+          <span data-i18n="settings.tabShortcuts">${t('settings.tabShortcuts')}</span>
+        </button>
+        <button class="settings-tab" data-tab="theme">
+          <i data-lucide="palette" class="w-4 h-4"></i>
+          <span data-i18n="settings.tabTheme">${t('settings.tabTheme')}</span>
+        </button>
+      </nav>
 
-    <div class="settings-body">
+      <div class="settings-body">
 
       <!-- ══════════ TAB: GENERAL ══════════ -->
       <div class="settings-tab-content active" data-tab-content="general">
@@ -245,6 +249,7 @@ const settingsPanelHTML = `
         </div>
       </div>
 
+      </div>
     </div>
   </div>
 `;
@@ -352,6 +357,24 @@ function renderBrushColorPresets() {
   });
 }
 renderBrushColorPresets();
+
+/* ----------------- Top toolbar sync ----------------- */
+function syncThemeCards() {
+  document.querySelectorAll('.settings-theme-card').forEach(c =>
+    c.classList.toggle('active', c.dataset.theme === getSetting('theme')));
+}
+
+if (lineColorSelect) {
+  lineColorSelect.addEventListener('change', () => {
+    setSetting('brushColor', lineColorSelect.value);
+    renderBrushColorPresets();
+  });
+}
+if (lineStyleSelect) {
+  lineStyleSelect.addEventListener('change', () => {
+    setSetting('lineStyle', lineStyleSelect.value);
+  });
+}
 
 /* ----------------- Color presets grid ----------------- */
 function renderColorPresetsGrid() {
@@ -557,8 +580,8 @@ function hideSettingsPanel() {
 closeSettingsBtn.addEventListener('click', hideSettingsPanel);
 settingsOverlay.addEventListener('click', hideSettingsPanel);
 
-// Wire up sidebar shortcut button
-document.getElementById('shortcutsBtn').addEventListener('click', showSettingsPanel);
+// Wire up toolbar settings button
+document.getElementById('settingsBtn')?.addEventListener('click', showSettingsPanel);
 
 // Re-render shortcuts when language changes
 window.addEventListener('doralangchange', () => {

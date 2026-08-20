@@ -1,6 +1,6 @@
 /* ----------------- Block factory ----------------- */
 function createBlock(type, content = '', x = null, y = null, width = null, height = null) {
-  const defaults = { text: { w: 320, h: 180 }, image: { w: 300, h: 200 } };
+  const defaults = { text: { w: 320, h: 180 }, image: { w: 300, h: 200 }, file: { w: 360, h: 120 } };
 
   const block = {
     id: nextId++, type, content,
@@ -420,6 +420,20 @@ function renderBlock(block) {
     content.addEventListener('keydown', (e) => handleTextKeydown(e, content, block));
     content.addEventListener('focus', () => { el.style.zIndex = 50; });
     content.addEventListener('blur', () => { el.style.zIndex = ''; });
+    el.appendChild(content);
+  } else if (block.type === 'file') {
+    const content = document.createElement('div');
+    content.className = 'file-block flex-1 px-4 py-3 flex flex-col items-start justify-center gap-1 cursor-pointer select-none';
+    content.innerHTML = `
+      <div class="flex items-center gap-2 max-w-full">
+        <i data-lucide="file-text" class="w-5 h-5 flex-shrink-0 text-indigo-500"></i>
+        <span class="font-semibold text-sm truncate text-slate-800 dark:text-slate-100">${escapeHtml(block.fileName || t('file.untitled'))}</span>
+      </div>
+      <div class="text-xs text-slate-400">
+        ${formatFileSize(block.fileSize)}${block.binary ? ' · ' + t('file.binary') : ''}
+      </div>
+    `;
+    content.addEventListener('click', () => openFileViewer(block));
     el.appendChild(content);
   } else {
     const content = document.createElement('div');

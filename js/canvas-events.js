@@ -61,11 +61,36 @@
       applyBlockSelection();
     }
 
-    /* ----------------- Add text ----------------- */
-    addTextBtn.addEventListener('click', () => {
-      const block = createBlock('text');
-      const content = document.querySelector(`#block-${block.id} .block-content`);
-      if (content) content.focus();
+    /* ----------------- Add (+) dropdown menu ----------------- */
+    addBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      addMenu.classList.toggle('hidden');
+      lucide.createIcons({ parent: addMenu });
+    });
+
+    addMenu.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const item = e.target.closest('[data-action]');
+      if (!item) return;
+      const action = item.dataset.action;
+      addMenu.classList.add('hidden');
+      if (action === 'addText') {
+        const block = createBlock('text');
+        const content = document.querySelector(`#block-${block.id} .block-content`);
+        if (content) content.focus();
+      } else if (action === 'addImage') {
+        imageInput.click();
+      } else if (action === 'addFile') {
+        fileInput.click();
+      } else if (action === 'createCodeCard') {
+        const x = -panX / zoom + 80;
+        const y = -panY / zoom + 80;
+        createIndependentCodeCard(x, y);
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!addMenuWrap.contains(e.target)) addMenu.classList.add('hidden');
     });
 
     /* ----------------- Page management ----------------- */
