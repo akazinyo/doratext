@@ -1,4 +1,5 @@
 function loadPage(pageId) {
+  clearSelection();
   const state = pagesData.canvasStates[pageId];
   if (state) {
     blocks = Array.isArray(state.blocks) ? state.blocks : [];

@@ -109,6 +109,23 @@ html.theme-black #shortcutsPanel {
 
 .note-block.resizing { z-index: 1000 !important; }
 
+/* ── Marquee (box) selection & multi-select ── */
+#selection-rect {
+  position: absolute;
+  z-index: 500;
+  background: rgba(99, 102, 241, 0.12);
+  border: 1.5px solid #6366f1;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+.note-block.selected,
+.independent-code-card.selected {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12);
+}
+
 .connection-path {
   pointer-events: stroke;
   stroke-width: 2.5;

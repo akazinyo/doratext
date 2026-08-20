@@ -1,3 +1,66 @@
+    /* ----------------- Marquee (box) selection ----------------- */
+    let marqueeState = null;
+
+    function applyBlockSelection() {
+      document.querySelectorAll('.note-block').forEach(el => {
+        const id = parseInt(el.id.replace('block-', ''), 10);
+        el.classList.toggle('selected', selectedBlockIds.has(id));
+      });
+      document.querySelectorAll('.independent-code-card').forEach(el => {
+        const id = parseInt(el.dataset.id, 10);
+        el.classList.toggle('selected', selectedCardIds.has(id));
+      });
+    }
+
+    function clearSelection() {
+      selectedBlockIds.clear();
+      selectedCardIds.clear();
+      applyBlockSelection();
+    }
+
+    function onMarqueeMove(e) {
+      if (!marqueeState) return;
+      const pt = canvasPoint(e);
+      const x = Math.min(marqueeState.startPt.x, pt.x);
+      const y = Math.min(marqueeState.startPt.y, pt.y);
+      marqueeState.rect.style.left = x + 'px';
+      marqueeState.rect.style.top = y + 'px';
+      marqueeState.rect.style.width = Math.abs(pt.x - marqueeState.startPt.x) + 'px';
+      marqueeState.rect.style.height = Math.abs(pt.y - marqueeState.startPt.y) + 'px';
+    }
+
+    function onMarqueeEnd(e) {
+      if (!marqueeState) return;
+      const endPt = canvasPoint(e);
+      marqueeState.rect.remove();
+      window.removeEventListener('pointermove', onMarqueeMove);
+      window.removeEventListener('pointerup', onMarqueeEnd);
+      window.removeEventListener('pointercancel', onMarqueeEnd);
+
+      const x = Math.min(marqueeState.startPt.x, endPt.x);
+      const y = Math.min(marqueeState.startPt.y, endPt.y);
+      const w = Math.abs(endPt.x - marqueeState.startPt.x);
+      const h = Math.abs(endPt.y - marqueeState.startPt.y);
+      marqueeState = null;
+
+      if (w < 5 && h < 5) { clearSelection(); return; }
+
+      selectedBlockIds.clear();
+      selectedCardIds.clear();
+      blocks.forEach(b => {
+        if (b.x < x + w && b.x + b.width > x && b.y < y + h && b.y + b.height > y) {
+          selectedBlockIds.add(b.id);
+        }
+      });
+      independentCodeCards.forEach(c => {
+        const cw = c.width || 500, ch = c.height || 200;
+        if (c.x < x + cw && c.x + cw > x && c.y < y + ch && c.y + ch > y) {
+          selectedCardIds.add(c.id);
+        }
+      });
+      applyBlockSelection();
+    }
+
     /* ----------------- Add text ----------------- */
     addTextBtn.addEventListener('click', () => {
       const block = createBlock('text');
@@ -28,6 +91,7 @@
         connections = [];
         freeDrawings = [];
         independentCodeCards = [];
+        clearSelection();
         document.querySelectorAll('.note-block').forEach(el => el.remove());
         document.querySelectorAll('.independent-code-card').forEach(el => el.remove());
         renderConnections();
@@ -45,8 +109,21 @@
     canvas.addEventListener('pointerdown', (e) => {
       if (e.button === 1) return;
       if (e.target.closest('.note-block')) return;
+      if (e.target.closest('.independent-code-card')) return;
+      if (e.target.closest('svg')) return;
       if (eraserMode) { startEraserDrag(e); return; }
-      startFreeDraw(e);
+      if (freeDrawMode) { startFreeDraw(e); return; }
+      if (drawingMode) return;
+
+      const startPt = canvasPoint(e);
+      const rect = document.createElement('div');
+      rect.id = 'selection-rect';
+      canvasZoom.appendChild(rect);
+      marqueeState = { startPt, rect };
+
+      window.addEventListener('pointermove', onMarqueeMove);
+      window.addEventListener('pointerup', onMarqueeEnd);
+      window.addEventListener('pointercancel', onMarqueeEnd);
     });
     canvas.addEventListener('pointermove', (e) => {
       if (eraserMode) { moveEraserDrag(e); return; }

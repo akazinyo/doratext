@@ -32,6 +32,10 @@
     let sidebarCollapsed = false;
     let theme = localStorage.getItem('doranote_theme') || 'light';
 
+    /* ----------------- Multi-select ----------------- */
+    let selectedBlockIds = new Set();
+    let selectedCardIds = new Set();
+
     /* ----------------- Undo / Redo ----------------- */
     const MAX_UNDO = 30;
     let undoStack = [];

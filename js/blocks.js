@@ -468,6 +468,7 @@ function deleteBlock(id) {
   const idx = blocks.findIndex(b => b.id === id);
   if (idx === -1) return;
   blocks.splice(idx, 1);
+  selectedBlockIds.delete(id);
   document.getElementById(`block-${id}`)?.remove();
   removeConnectionsForBlock(id);
   saveWorkspace();

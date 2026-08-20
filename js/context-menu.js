@@ -290,5 +290,6 @@
       if (e.key === 'Escape') {
         hideContextMenu();
         hideAutocompleteDropdown();
+        clearSelection();
       }
     });

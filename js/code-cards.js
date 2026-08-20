@@ -117,6 +117,7 @@
       const idx = independentCodeCards.findIndex(c => c.id === id);
       if (idx === -1) return;
       independentCodeCards.splice(idx, 1);
+      selectedCardIds.delete(id);
       document.querySelector(`.independent-code-card[data-id="${id}"]`)?.remove();
       saveWorkspace();
       updateEmptyState();
@@ -146,9 +147,25 @@
         e.preventDefault();
         el.setPointerCapture(e.pointerId);
         el.classList.add('dragging');
+
+        const multi = selectedCardIds.has(card.id) && (selectedBlockIds.size + selectedCardIds.size) > 1;
+        if (!multi) {
+          selectedBlockIds.clear();
+          selectedCardIds.clear();
+          selectedCardIds.add(card.id);
+        }
+        applyBlockSelection();
+
+        const positions = new Map();
+        if (multi) {
+          for (const b of blocks) if (selectedBlockIds.has(b.id)) positions.set(b.id, { x: b.x, y: b.y });
+          for (const c of independentCodeCards) if (selectedCardIds.has(c.id)) positions.set(c.id, { x: c.x, y: c.y });
+        }
+
         dragStateLocal = {
           startX: e.clientX, startY: e.clientY,
-          initialLeft: card.x, initialTop: card.y
+          initialLeft: card.x, initialTop: card.y,
+          multi, positions
         };
       });
 
@@ -157,6 +174,29 @@
         e.preventDefault();
         const dx = e.clientX - dragStateLocal.startX;
         const dy = e.clientY - dragStateLocal.startY;
+
+        if (dragStateLocal.multi) {
+          for (const [id, pos] of dragStateLocal.positions) {
+            const b = blocks.find(x => x.id === id);
+            if (b) {
+              b.x = pos.x + dx;
+              b.y = pos.y + dy;
+              const bel = document.getElementById(`block-${b.id}`);
+              if (bel) { bel.style.left = b.x + 'px'; bel.style.top = b.y + 'px'; }
+            } else {
+              const c = independentCodeCards.find(x => x.id === id);
+              if (c) {
+                c.x = pos.x + dx;
+                c.y = pos.y + dy;
+                const cel = document.querySelector(`.independent-code-card[data-id="${c.id}"]`);
+                if (cel) { cel.style.left = c.x + 'px'; cel.style.top = c.y + 'px'; }
+              }
+            }
+          }
+          updateConnectionsRealtime();
+          return;
+        }
+
         card.x = Math.max(0, dragStateLocal.initialLeft + dx);
         card.y = Math.max(0, dragStateLocal.initialTop + dy);
         el.style.left = card.x + 'px';
