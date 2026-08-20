@@ -415,6 +415,7 @@ html.theme-black #shortcutsPanel {
 }
 
 .page-item {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -423,6 +424,47 @@ html.theme-black #shortcutsPanel {
   cursor: pointer;
   transition: background-color 0.15s ease;
   user-select: none;
+}
+
+/* ── Tree view: sub-pages (X-style reply threads) ── */
+.page-item.tree-child::before {
+  content: '';
+  position: absolute;
+  top: -0.25rem;
+  bottom: 0;
+  left: var(--trunk-x, 8px);
+  width: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  opacity: 0.18;
+  pointer-events: none;
+}
+
+.page-item.tree-child::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: var(--trunk-x, 8px);
+  width: calc(var(--indent, 20px) - var(--trunk-x, 8px));
+  height: 2px;
+  border-radius: 2px;
+  transform: translateY(-50%);
+  background: currentColor;
+  opacity: 0.18;
+  pointer-events: none;
+}
+
+.page-item.tree-child .tree-child-icon {
+  width: 14px;
+  height: 14px;
+  color: var(--accent-color, #6366f1);
+  opacity: 0.8;
+  flex-shrink: 0;
+}
+
+#sidebar.collapsed .page-item.tree-child::before,
+#sidebar.collapsed .page-item.tree-child::after {
+  display: none;
 }
 
 .page-item:hover { background-color: rgba(99, 102, 241, 0.1); }

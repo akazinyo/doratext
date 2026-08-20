@@ -4,9 +4,17 @@ function renderPageList() {
     const item = document.createElement('div');
     item.className = `page-item ${page.id === currentPageId ? 'active' : ''}`;
     item.dataset.pageId = page.id;
-    item.style.paddingLeft = (depth * 20) + 'px';
+
+    const isChild = depth > 0;
+    if (isChild) {
+      item.classList.add('tree-child');
+      item.style.setProperty('--trunk-x', ((depth - 1) * 20 + 8) + 'px');
+      item.style.setProperty('--indent', (depth * 20) + 'px');
+    }
+    item.style.paddingLeft = isChild ? 'var(--indent)' : '0px';
+
     item.innerHTML = `
-      <i data-lucide="file-text" class="w-4 h-4 flex-shrink-0"></i>
+      <i data-lucide="file-text" class="w-4 h-4 flex-shrink-0 ${isChild ? 'tree-child-icon' : ''}"></i>
       <span class="page-title" contenteditable="false">${escapeHtml(page.title || t('page.untitled'))}</span>
       <div class="page-actions">
         <button class="page-action-btn rename-page-btn text-slate-500 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-400" title="${t('page.rename')}">
